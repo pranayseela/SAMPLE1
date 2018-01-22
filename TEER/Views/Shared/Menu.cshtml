@@ -1,0 +1,57 @@
+﻿@using System.Security.Principal
+@model TEER.ViewModel.HeaderViewModel
+@{
+    IPrincipal user = HttpContext.Current.User;
+}
+@section pageCss
+{
+    <style type="text/css">
+    </style>
+}
+
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home">TEER - Train & Engine Electronic Register</a>
+        </div>
+        <div class="collapse navbar-collapse pull-right" id="main-menu">
+            <ul class="nav navbar-nav"> 
+                <li>
+                    <a href="@Url.Action("Index", "Home")" tabindex="1">Main Menu</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("RegisterSheet", "Register")" tabindex="1">Register </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ComputerInformation", "ComputerInformation")" tabindex="1">Computer Information </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Reports", "Reports")" tabindex="1">Reports </a>
+                </li>
+                <li>
+                        @if (Model.LoggedInUsernameVisible)
+                        {
+                            if (!Model.IsWindowsAuthentication)
+                            {
+                                <form class="navbar-form navbar-right">
+                                    <a class="btn btn-default" href='@Url.Action("Logout", "Account")'>
+                                        <span class="glyphicon glyphicon-log-out"></span> <strong>Logout</strong>
+                                        <span class="small-text">(@Model.BaseVM.LoggedInUsername)</span>
+                                    </a>
+                                </form>
+                            }
+                        }
+                </li>
+            </ul>
+        </div>
+        <div style="color:white;" class="pull-right text-sm col-sm-12">
+        <span class="pull-right">@Model.EmployeeInfo</span>
+        </div>
+        </div>
+</nav>

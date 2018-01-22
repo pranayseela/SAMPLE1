@@ -1,0 +1,53 @@
+﻿@using TEER.ViewModel
+
+@model ComputerInformationViewModel
+
+@{
+    Model.PageTitle = "Computer Information";
+}
+
+<h2 style="text-align:center;">This Computer Information</h2>
+<style>
+    table {
+        width: 83%;
+        border-collapse: collapse;
+        margin: 30px auto;
+    }
+    /* Zebra striping */
+    tr:nth-of-type(odd) {
+        background: #eee;
+    }
+
+    th {
+        background: #3498db;
+        color: white;
+        font-weight: bold;
+    }
+
+    td, th {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: left;
+        font-size: 18px;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>Property Name</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>IP Address: </td>
+        <td>@Model.ipAddress</td>
+    </tr>
+    <tr>
+        <td>Computer Name: </td>
+        <td>@Model.computerName</td>
+    </tr>
+    <tr>
+        <td>MAC Address: </td>
+        <td>@Model.macAddress</td>
+    </tr>
+</table>
+

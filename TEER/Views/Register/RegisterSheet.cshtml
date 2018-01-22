@@ -1,0 +1,115 @@
+﻿@using TEER.ViewModel
+@model RegisterViewModel
+
+@{
+    Model.PageTitle = "Register Sheet";
+}
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 30px auto;
+    }
+
+    tr:nth-of-type(odd) {
+        background: #eee;
+    }
+
+    th {
+        background: #3498db;
+        color: white;
+        font-weight: bold;
+    }
+
+    td, th {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    input {
+        max-width: 100px;
+    }
+</style>
+
+<div class="row" style="background-color:lightblue;">
+    <h2 style="text-align:center; margin-bottom:10px;margin-top:0px; ">Register Sheet</h2>
+</div>
+<div class="row">
+
+    <table>
+        <tr style="background-color:transparent;">
+            <td>MTA Metro-North Railroad</td>
+            <td>Location: @Model.ipAddress</td>
+            <td rowspan="3"><img src="~/Content/logo.PNG" style="" /></td>
+        </tr>
+        <tr style="background-color:transparent;">
+            <td>Transportation Department</td>
+            <td>Day/Date: @DateTime.Now.ToString("MM-dd-yyyy")</td>
+        </tr>
+        <tr style="background-color:transparent;">
+            <td>Employee Register Sheet</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<hr style="margin:10px; color:black;" />
+<div class="row">
+    <div class="col-md-12">
+        <br />
+        <p style="border: 1px solid green; font-size:19px; text-align:center; font-style:italic;">The undersigned hereby certifies that (s)he has been off duty as required by the Rule "F" and is in fit condition for duty. The undersigned Conductors, Trainmen, Engineers and Track Car Drivers further certify they have received and read the Daily Train Operations Bulletin Order and received and read all General Orders, Bulletin Orders, General Notices and Operations Notice listed on the top of the Daily Train Operations Bulletin Order and thoroughly understand those for the terretory over which qualified.</p>
+    </div>
+</div>
+<div class="row">
+</div>
+
+@{
+    <div class="row">
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Run/Job</th>
+                <th>Train</th>
+                <th>Time <br />Ordered To <br />Report</th>
+                <th>Time <br />Registered</th>
+                <th>Qualified for<br />Train Assign.<br /> (Yes/No)</th>
+                <th>Empl. #</th>
+                <th>Employee Signature</th>
+            </tr>
+            <tr>
+                <td>@DateTime.Now.ToString("MM-dd-yyyy")</td>
+                <td>3256</td>
+                <td>Train - 7</td>
+                <td>@DateTime.Now.ToString("hh:mm:ss")</td>
+                <td>@DateTime.Now.ToString("hh:mm:ss")</td>
+                <td>YES</td>
+                <td>1234567</td>
+                <td>Signature</td>
+            </tr>
+            <tr>
+                <td>@DateTime.Now.ToString("MM-dd-yyyy")</td>
+                <td>3256</td>
+                <td>Train - 7</td>
+                <td>@DateTime.Now.ToString("hh:mm:ss")</td>
+                <td>@DateTime.Now.ToString("hh:mm:ss")</td>
+                <td>NO</td>
+                <td>1234567</td>
+                <td>Signature</td>
+            </tr>
+        </table>
+        @Html.Hidden("name", 0, new { @class = "indexValue" })
+        <input type="button" class="addNewRow" name="[0].AddChoice" onclick="AddChoice(0,this)" value="Add record" />
+    </div>
+}
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+    function AddChoice(index,e)
+    {
+        var parent=$(e).parent();
+        var table=parent.children().eq(0);
+        var newRow = "<tr><td>@DateTime.Now.ToString("MM-dd-yyyy")</td><td> <input type=\"text\" name=\"Job\"> </td><td> <input type=\"text\" name=\"train\"> </td><td>@DateTime.Now.ToString("hh:mm:ss")</td><td>@DateTime.Now.ToString("hh:mm:ss")</td><td> <input type=\"text\" name=\"TrainAssn\"> </td><td> <input type=\"text\" name=\"EmpNo\"> </td><td> <input type=\"text\" name=\"EmpSign\"> </td></tr>";
+        table.append(newRow);
+    }
+</script>

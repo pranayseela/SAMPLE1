@@ -1,0 +1,102 @@
+﻿
+@model TEER.ViewModel.BaseUIViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>@Model.PageTitle</title>
+    @Styles.Render("~/static/styles/css")
+    @Scripts.Render("~/static/scripts/js")
+
+    @RenderSection("headerScripts", required: false)
+    @*<script src="~/static/scripts/sitetimeout.js"></script>*@
+    @RenderSection("pageCss", required: false)
+</head>
+<body>
+    <div class="page">
+        @Html.Partial("Menu", Model.HeaderVM)
+
+        @*<div id="notificationWrapper">
+            @if (Model.NotificationVM.Messages.Count != 0)
+            {
+                Html.RenderPartial("Notification", Model.NotificationVM);
+            }
+        </div>*@
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+
+    <div id="masterDialog" class="master-dialog" style="display: none; padding-left: 8px;">
+    </div>
+
+    <div id="autoLogoutAlert" style="padding: 5px; text-align: left; display: none">
+        <p style="margin-top: 3px; text-align: center">
+            You will be logged out in <b><span id="autoLogoutSeconds" style="color: red">30</span></b>
+            seconds due to inactivity.
+        </p>
+        <div style="margin-top: 15px; text-align: center">
+            <input type="button" value="Stay Logged In" id="btnStayLoggedIn" />
+        </div>
+    </div>
+   
+    <!-- modal placeholder-->
+    <div id='myModal' class='modal fade in'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContent'>
+                    @*@if (Model.IsRedirectedToConfirmOnDutyPage)
+                    {
+                        @Html.Partial("DisclaimerPopup", Model.GetConfirmDutyViewModel);
+                    }
+                    @if (Model.IsRedirectedToConfirmOnDutyPage)
+                    {
+                        <script>
+                            $(document).ready(function () {
+                                //$('#myModalContent').html("lppol");
+                                $('#myModal').attr("data-edit-modal", "").modal({
+                                    keyboard: true,
+                                    backdrop: 'static'
+                                }, 'show');
+                            });
+                        </script>
+                    }*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        function buildUrl(requestPath) {
+            var url = "@Request.ApplicationPath";
+
+            // add a trailing "/"
+            if (url.substr(url.length - 1, 1) !== "/") {
+                url = url + "/";
+            }
+            // remove the "/" at the start
+            if (requestPath.substr(0, 1) === "/") {
+                if (requestPath.length === 1) {
+                    requestPath = "";
+                }
+                else {
+                    requestPath = requestPath.substr(1);
+                }
+            }
+            return url + requestPath;
+        }
+    </script>
+    <input type="hidden" id="txtAutoLogoutEnabled" value="@Model.AutoLogoutEnabled"/>
+    <input type="hidden" id="txtAutoLogoutIntervalSeconds" value="@Model.AutoLogoutIntervalSeconds" />
+    <input type="hidden" id="txtAutoLogoutTimeoutSeconds" value="@Model.AutoLogoutTimeoutSeconds"/>
+    
+  
+    @RenderSection("footerScripts", required: false)
+    
+</body>
+</html>

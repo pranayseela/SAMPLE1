@@ -1,0 +1,155 @@
+﻿/*
+site specific styles
+*/
+
+
+div.emp-qualif p[data-preaward=YES],
+div.qualif-props p[data-preaward=YES] {
+	font-weight: bold;
+	color: green;
+}
+
+div.emp-qualif span[data-active=NO] {
+	font-weight: bold;
+	color: red;
+}
+
+div.validity-legend span.legend {
+	border: 1px solid gray;
+	margin-left: 10px;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+}
+
+table.data div.validity-legend span.legend {
+	margin-left: 0px;
+}
+
+div.emp-qualif label {
+	font-weight: bold;
+	display: inline-block;
+	width: 100px;
+}
+
+div.emp-qualif table.data tr.data-row > td p {
+	padding: 2px 0;
+}
+
+div.emp-qualif table.data tr, div.emp-qualif table.data tr:hover {
+	background-color: white;
+}
+
+div.validity-legend span.validity-expired,
+div.emp-qualif > div.validity-expired table.data > tbody > tr {
+	background-color: #E83636;
+	color: white;
+}
+
+div.validity-legend span.validity-30,
+div.emp-qualif > div.validity-30 table.data > tbody > tr {
+	background-color: orange;
+	color: black;
+}
+
+div.validity-legend span.validity-60,
+div.emp-qualif > div.validity-60 table.data > tbody > tr {
+	background-color: yellow;
+	color: black;
+}
+
+div.validity-legend span.validity-90,
+div.emp-qualif > div.validity-90 table.data > tbody > tr {
+	background-color: purple;
+	color: white;
+}
+
+div.validity-legend span.validity-180,
+div.emp-qualif > div.validity-180 table.data > tbody > tr {
+	background-color: #87CEFA;
+	color: black;
+}
+
+div.validity-legend span.validity-365,
+div.emp-qualif > div.validity-365 table.data > tbody > tr {
+	background-color: green;
+	color: white;
+}
+
+div.validity-legend span.missing,
+div.emp-qualif > div.missing table.data > tbody > tr {
+	background-color: #FF0080;
+	color: white;
+}
+
+div.validity-legend span.valid-indefinitely,
+div.emp-qualif > div.valid-indefinitely table.data > tbody > tr {
+	background-color: #D6FFD6;
+	color: black;
+}
+
+/*override green font color to contrast with validity specific background color */
+div.emp-qualif > div.validity-expired p[data-preaward=YES],
+div.emp-qualif > div.validity-30 p[data-preaward=YES],
+div.emp-qualif > div.validity-60 p[data-preaward=YES],
+div.emp-qualif > div.validity-90 p[data-preaward=YES],
+div.emp-qualif > div.validity-365 p[data-preaward=YES] {
+	color: white;
+}
+
+.tooltip-summary {
+	background-color: #FFFCC0;
+	border: 2px solid #CCCCCC;
+	color: black;
+}
+
+/*qualification autocomplete styling*/
+div.qualif-autocomplete-container .ui-autocomplete {
+	width: 500px;
+	max-height: 250px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background-image: none;
+	background-color: #FFFFCC;
+}
+
+div.qualif-autocomplete-container .ui-menu .ui-menu-item a {
+	border: 1px solid #FFFFCC;
+	/*font-size: 12px;*/
+	/*letter-spacing: 1px;*/
+	font-family: Arial, Verdana;
+	font-weight: bold;
+}
+
+div.qualif-autocomplete-container .ui-menu .ui-state-focus a {
+	background-image: none;
+	background-color: #000080;
+	border: 1px solid #000080;
+	color: #FFFF99;
+	margin: 10px;
+}
+
+div.autocomplete-container .ui-autocomplete {
+	width: 500px;
+	max-height: 250px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background-image: none;
+	background-color: #FFFFCC;
+}
+
+div.autocomplete-container .ui-menu .ui-menu-item a {
+	border: 1px solid #FFFFCC;
+	/*font-size: 12px;*/
+	/*letter-spacing: 1px;*/
+	font-family: Arial, Verdana;
+	font-weight: bold;
+}
+
+div.autocomplete-container .ui-menu .ui-menu-item a.ui-state-focus {
+	background-image: none;
+	background-color: #000080;
+	border: 1px solid #000080;
+	color: #FFFF99;
+	margin: 0px;
+}

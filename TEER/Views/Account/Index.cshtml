@@ -1,0 +1,199 @@
+﻿@using TEER.ViewModel
+@model LoginViewModel
+
+@{
+    Model.PageTitle = "Login Page";
+    Layout = "~/Views/Shared/_LoginMaster.cshtml";
+}
+@section pageCss
+{
+    <style type="text/css">
+        .trueBlue {
+            background-color: #2b6bb4;
+            border-color: #2b6bb4;
+            overflow: hidden !important;
+        }
+
+        .form-group {
+            margin-bottom: 15px !important;
+        }
+
+        .modal-header {
+            background-color: white !important;
+            color: #333 !important;
+        }
+
+        .modal-footer {
+            border-top: 0px !important;
+        }
+
+        .modal-dialog {
+            max-width: 600px !important;
+        }
+
+        .responsive-scale {
+            width: 100% !important;
+            padding-bottom: 66.666666666667% !important; /* 960px/1440px */
+            background-image: url(../static/images/train_bk.png);
+            vertical-align: bottom !important;
+            position: absolute !important;
+            bottom: 0px !important;
+            background-size: cover !important;
+            background-position: center !important; /* IE fix */
+        }
+    </style>
+}
+
+<div class="container">
+    <form method="post">
+        <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img alt="MTA" src="../static/images/MTA.png" style="width: 15%" class="img-responsive center-block" />
+                        <h3 class="text-center">Train & Engine Electronic Register - Login</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.EmployeeNumber, new { @class = "form-control input-lg", placeholder = "BSC Number", maxlength = "7" })
+                            <div class="error-text">
+                                @Html.ValidationMessageFor(m => m.EmployeeNumber)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control input-lg", placeholder = "Password", maxlength = "20" })
+                            <div class="error-text">
+                                @Html.ValidationMessageFor(m => m.Password)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-lg btn-block" id="btnLogin" name="Login">Sign In</button>
+                            <span class="pull-right"><a href="@Model.PasswordResetPage">Reset Password</a></span><span><a href="@Model.FAQPage">Need help?</a></span>
+                        </div>
+                        @*@if (Model.RunningEnv != null && (Model.RunningEnv == "dev" || Model.RunningEnv == "stage"))
+                        {
+                            <div class="alert alert-danger hidden-xs">
+                                <b>These options are available in Test and QA only</b>
+                                <br />
+                                <input id="Checkbox1" type="checkbox" />&nbsp;<b>Authenticate Password</b>
+                                <hr />
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="input-margin bold">Date & Time</div>
+                                        <div>
+                                            <div class="col-xs-5  col-lg-6 no-padding">
+                                                
+                                                @Html.TextBoxFor(m => m.Date, new { id = "DateTxt", @class = "form-control datepicker", placeholder = "mm/dd/yyyy",maxlength = "10" })
+                                            </div>
+                                            <div class="col-xs-7 col-lg-6">
+                                                <div class="input-group bootstrap-timepicker timepicker ">
+                                                    
+                                                    @Html.TextBoxFor(m => m.Time, new { id = "TimeTxt", @class = "form-control input-small timepicker1 time-controls", placeholder = "Time", maxlength = "8" })
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }*@
+                        @if (!string.IsNullOrEmpty(Model.LoginErrorMessage))
+                        {
+                            <div class="alert alert-danger alert-dismissible text-left" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <span id="alertMessage">@Model.LoginErrorMessage</span>
+                            </div>
+                        }
+                        <div id="loginErrorDiv" style="display:none" class="alert alert-danger">
+                            @*<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><b>Check below checkbox to agree to terms before attempting to log in</b>*@
+                            <button id="btnLoginError" type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><b>Check below checkbox to agree to terms before attempting to log in</b>
+                        </div>
+                        @*<div class="alert alert-warning">
+    <div class="input-group bold col-md-5">
+        @Html.CheckBoxFor(m => m.LoginCertified, new { id = "LoginCertifiedCheck" })
+        <label>I agree</label>
+    </div>
+                            <b>By logging in and certifying my eHOS record, I understand that I am not knowingly and/or willfully falsifying a required record.</b>
+                            <br />
+                            <br />
+                            <b>I understand that if an eHOS record is not present, it is my responsibility to add it to ensure my HOS is properly recorded.</b>
+                        </div>
+                    </div>*@
+                    <div class="modal-footer">
+                        @*@if (!string.IsNullOrEmpty(Model.LoginErrorMessage))
+                        {
+                            <div class="alert alert-danger alert-dismissible text-left" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <span id="alertMessage">@Model.LoginErrorMessage</span>
+                            </div>
+                        }*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@section footerScripts
+{
+    <script type="text/javascript">
+        $(document).ready(docReady);
+
+        function docReady() {
+            $("#EmployeeNumber").focus();
+
+            $("#EmployeeNumber").keyup(function () {
+                var v = $(this).val();
+                if (v.length > 6) {
+                    $("#Password").focus();
+                }
+            });
+
+            $("#btnLoginError").on("click", function(evt) {
+                //debugger;
+                document.getElementById('loginErrorDiv').style.display = 'none';
+            });
+
+
+            $("#btnLogin").on("click", function (evt) {
+                evt.preventDefault();
+                //if(! $('#LoginCertifiedCheck').is(':checked')) {
+                //    document.getElementById('loginErrorDiv').style.display = 'block';
+                //    return;
+                //}
+                var $form = $('form');
+                if ($form.valid()) {
+                    $(this)
+                        .find("span")
+                            .remove()
+                        .end()
+                        .html("<span class='glyphicon glyphicon-refresh spinning'></span> Logging in...");
+
+                    $form.submit();
+                }
+            });
+
+            var date = new Date();
+            date.setDate(date.getDate());
+            $(".datepicker").datepicker({});
+            $(".timepicker1").timepicker();
+
+            var loginTime = @Html.Raw(Json.Encode(Model.Time));
+            if (loginTime == null) {
+                $(".timepicker1").val('');
+
+            }
+        }
+
+    </script>
+}
+
